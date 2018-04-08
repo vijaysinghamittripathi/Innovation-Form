@@ -1,0 +1,40 @@
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Category Name</label>
+        
+          <select id="category" formControlName="name" #name>
+            <option *ngFor="let c of categories; let i = index" [ngValue]="i+1">{{ c }}</option>
+          </select>
+      
+      </div>
+      <div *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['name'].errors.required">
+          Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Category Description</label>
+        <input type="text" class="form-control" formControlName="desc" #desc/>
+      </div>
+      <div *ngIf="angForm.controls['desc'].invalid && (angForm.controls['desc'].dirty || angForm.controls['desc'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['desc'].errors.required">
+          Price is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Category Thumbnail</label>
+        <input type="text" class="form-control" formControlName="thumbnail" #thumbnail/>
+      </div>
+      <div *ngIf="angForm.controls['thumbnail'].invalid && (angForm.controls['thumbnail'].dirty || angForm.controls['thumbnail'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['thumbnail'].errors.required">
+          Price is required.
+        </div>
+      </div>
+        <div class="form-group">
+          <button (click)="addCategory(name.value, desc.value, thumbnail.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Add</button>
+        </div>
+    </form>
+  </div>
+</div>

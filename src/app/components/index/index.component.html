@@ -1,0 +1,107 @@
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Category Name</label>
+        <select id="category" class="form-control" formControlName="categoryname" #categoryname>
+            <option *ngFor="let c of categories; let i = index" [ngValue]="i+1">{{ c }}</option>
+        </select>
+      </div>
+      <div *ngIf="angForm.controls['categoryname'].invalid && (angForm.controls['categoryname'].dirty || angForm.controls['categoryname'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['categoryname'].errors.required">
+          Category Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Innovation Title</label>
+        <input type="text" class="form-control" formControlName="title" #title/>
+      </div>
+      <div *ngIf="angForm.controls['title'].invalid && (angForm.controls['title'].dirty || angForm.controls['title'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['title'].errors.required">
+          Title is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Innovation Description</label>
+        <input type="text" class="form-control" formControlName="desc" #desc/>
+      </div>
+      <div *ngIf="angForm.controls['desc'].invalid && (angForm.controls['desc'].dirty || angForm.controls['desc'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['desc'].errors.required">
+          Description is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Thumbnail URL</label>
+        <input type="text" class="form-control" formControlName="thumb" #thumb/><br>
+        <div *ngIf="currentFileUploadThumb" class="progress">
+          <div class="progress-bar progress-bar-info progress-bar-striped"
+            role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+            aria-valuemin="0" aria-valuemax="100"
+            [ngStyle]="{width:progress.percentage+'%'}">
+            {{progress.percentage}}%</div>
+        </div>
+        <label class="btn btn-default"> <input type="file" class="form-control" 
+          formControlName="pic" (change)="selectThumnail($event)"></label>
+        <div class="form-group" style="padding-top:5px; float: right;">
+          <button class="btn btn-success" [disabled]="!selectedFiles"
+	          (click)="upload('thumb')">Upload</button>
+        </div>
+      </div>
+      <div *ngIf="angForm.controls['thumb'].invalid && (angForm.controls['thumb'].dirty || angForm.controls['thumb'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['thumb'].errors.required">
+          thumbnail is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Team Information</label><hr>
+        <input type="text" class="form-control" placeholder="Team name" formControlName="teamname" #teamname/><br>
+        <div *ngIf="angForm.controls['teamname'].invalid && (angForm.controls['teamname'].dirty || angForm.controls['teamname'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['teamname'].errors.required">
+            Team Name is required.
+          </div>
+        </div>
+        <input type="text" class="form-control" placeholder="Phone" formControlName="teamphone" #teamphone/><br>
+        <input type="text" class="form-control" placeholder="E-mail" formControlName="teamemail" #teamemail/><br>
+        <input type="text" class="form-control" placeholder="Team Image URL" formControlName="teamimage" #teamimage/><br>
+        <div *ngIf="currentFileUploadTeamImage" class="progress">
+          <div class="progress-bar progress-bar-info progress-bar-striped"
+            role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+            aria-valuemin="0" aria-valuemax="100"
+            [ngStyle]="{width:progress.percentage+'%'}">
+            {{progress.percentage}}%</div>
+        </div>
+        <label class="btn btn-default"> <input type="file" class="form-control" 
+          formControlName="pic" (change)="selectTeamImage($event)"></label>
+        <div class="form-group" style="padding-top:5px; float: right;">
+          <button class="btn btn-success" [disabled]="!selectedFiles"
+	          (click)="upload('teamimage')">Upload</button>
+        </div>
+        <input type="text" class="form-control" placeholder="Enter comma seprated names" formControlName="teamparticipant" #teamparticipant/>
+      </div>
+     
+      <div class="form-group">
+        <label class="col-md-4">Status</label><hr>
+        
+        <label class="col-md-4">Innovation Status</label>
+          <select id="status" class="form-control" formControlName="status" #status>
+            <option *ngFor="let c of innovationStatus;"  [ngValue]="c">{{ c }}</option>
+          </select>
+          
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Content</label><hr>
+        <input type="text" class="form-control" placeholder="Content URL" formControlName="contenturl" #contenturl/><br>
+        
+        <label class="col-md-4">Content Type</label>
+          <select id="contenttype" class="form-control" formControlName="contenttype" #contenttype>
+            <option *ngFor="let c of contentTypes;"  [ngValue]="c">{{ c }}</option>
+          </select>
+          
+      </div>
+      
+        <div class="form-group">
+          <button (click)="addInnovation(angForm)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Add</button>
+        </div>
+    </form>
+  </div>
+</div>
