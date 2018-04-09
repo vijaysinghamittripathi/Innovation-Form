@@ -22,6 +22,6 @@ export class ShareService {
     const basePath = '/innovations';
     const obj = this.db.database.ref(basePath);
     obj.push(data);
-    console.log('Success');
+    alert('Innovation added Successfully.'); 
   }
 }

@@ -63,6 +63,11 @@
         <input type="text" class="form-control" placeholder="Phone" formControlName="teamphone" #teamphone/><br>
         <input type="text" class="form-control" placeholder="E-mail" formControlName="teamemail" #teamemail/><br>
         <input type="text" class="form-control" placeholder="Team Image URL" formControlName="teamimage" #teamimage/><br>
+        <div *ngIf="angForm.controls['teamimage'].invalid && (angForm.controls['teamimage'].dirty || angForm.controls['teamimage'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['teamimage'].errors.required">
+            Team Image is required.
+          </div>
+        </div>
         <div *ngIf="currentFileUploadTeamImage" class="progress">
           <div class="progress-bar progress-bar-info progress-bar-striped"
             role="progressbar" attr.aria-valuenow="{{progress.percentage}}"

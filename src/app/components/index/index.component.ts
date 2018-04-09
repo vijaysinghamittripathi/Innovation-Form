@@ -42,7 +42,7 @@ export class IndexComponent implements OnInit {
       thumb: ['', Validators.required],
       teamname: ['', Validators.required ],
       status: ['', Validators.required],
-      teamimage: [''],
+      teamimage: ['', Validators.required],
       teamphone: ['' ],
       teamemail: ['' ],
       teamparticipant: [''],
@@ -54,7 +54,7 @@ export class IndexComponent implements OnInit {
   this.angForm.controls['contenttype'].setValue(this.defaultContentType, {onlySelf: true});
   this.angForm.controls['status'].setValue(this.defaultStatus, {onlySelf: true});
   }
-
+ 
   selectThumnail(event) {
     const file = event.target.files.item(0);
 
