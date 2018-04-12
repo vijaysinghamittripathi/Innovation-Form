@@ -3,10 +3,8 @@ import { CreateComponent } from './components/create/create.component';
 import { IndexComponent } from './components/index/index.component';
 
 export const appRoutes: Routes = [
-  { path: 'category',
-    component: CreateComponent
-  },
+  { path: '', redirectTo: 'innovations', pathMatch: 'full' },
   { path: 'innovations',
-    component: IndexComponent
-  }
+     component: IndexComponent
+   }
 ];
