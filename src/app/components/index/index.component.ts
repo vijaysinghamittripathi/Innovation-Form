@@ -18,7 +18,7 @@ export class IndexComponent implements OnInit {
 
   public shares: Observable<any[]>;
   angForm: FormGroup;
-  categories: String[] = ['IoT', 'BlockChain', 'AI', 'Robotics', 'VR', 'Web'];
+  categories: String[] = ['IoT', 'BlockChain', 'AI', 'Robotics', 'VR', 'Web', 'Misc.', 'Mobile', 'AR'];
   contentTypes: String[] = ['video', 'pdf', 'prsentation'];
   innovationStatus: String[] = ['ideation', 'prototype', 'completed'];
   default: Number = 1;
@@ -54,7 +54,6 @@ export class IndexComponent implements OnInit {
   this.angForm.controls['contenttype'].setValue(this.defaultContentType, {onlySelf: true});
   this.angForm.controls['status'].setValue(this.defaultStatus, {onlySelf: true});
   }
- 
   selectThumnail(event) {
     const file = event.target.files.item(0);
 
